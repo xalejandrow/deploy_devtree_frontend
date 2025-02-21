@@ -16,3 +16,8 @@ NOTA: Si da un error al ejecutar hay que usar lo siguiente en vez de lo anterior
 
 # React Router DOM
 - npm i react-router-dom
+
+#  React Hook Form
+https://react-hook-form.com/docs
+
+- npm i react-hook-form
