@@ -4,7 +4,15 @@ import ErrorMessage from "../components/ErrorMessage";
 
 export default function RegisterView() {
 
-    const { register, watch, handleSubmit, formState: { errors } } = useForm();
+    const initialValues = {
+        name: '',
+        email: '',
+        handle: '',
+        password: '',
+        password_confirmation: ''
+    }
+
+    const { register, watch, handleSubmit, formState: { errors } } = useForm({defaultValues: initialValues});
 
     console.log(errors);
     
@@ -51,7 +59,7 @@ export default function RegisterView() {
                     required: 'El Email es obligatorio'
                 })}
                 />
-                
+
                 {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
           </div>
           <div className="grid grid-cols-1 space-y-3">
@@ -67,6 +75,8 @@ export default function RegisterView() {
                     required: 'El Handle es obligatorio'
                 })}
             />
+
+            {errors.handle && <ErrorMessage>{errors.handle.message}</ErrorMessage>}
           </div>
           <div className="grid grid-cols-1 space-y-3">
             <label htmlFor="password" className="text-2xl text-slate-500">
@@ -81,6 +91,8 @@ export default function RegisterView() {
                     required: 'El Password es obligatorio'
                 })}
             />
+
+            {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
           </div>
 
           <div className="grid grid-cols-1 space-y-3">
@@ -96,10 +108,12 @@ export default function RegisterView() {
               placeholder="Repetir Password"
               className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
                 {...register("password_confirmation", { 
-                    required: 'El Password es obligatorio',
+                    required: 'Repetir Password es obligatorio',
                     // validate: (value) => value === watch('password') || 'Las contraseñas no coinciden'
                 })}
             />
+
+            {errors.password_confirmation && <ErrorMessage>{errors.password_confirmation.message}</ErrorMessage>}
           </div>
 
           <input
