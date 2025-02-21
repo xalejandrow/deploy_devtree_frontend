@@ -24,3 +24,6 @@ https://react-hook-form.com/docs
 
 # Axios
 - npm i axios
+
+# Sonner
+- npm install sonner
