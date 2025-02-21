@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import ErrorMessage from "../components/ErrorMessage";
 
 export default function RegisterView() {
 
@@ -33,6 +34,9 @@ export default function RegisterView() {
                     required: 'El nombre es obligatorio'
                 })}
             />
+
+            {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+
           </div>
           <div className="grid grid-cols-1 space-y-3">
             <label htmlFor="email" className="text-2xl text-slate-500">
@@ -46,7 +50,9 @@ export default function RegisterView() {
                 {...register("email", { 
                     required: 'El Email es obligatorio'
                 })}
-            />
+                />
+                
+                {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
           </div>
           <div className="grid grid-cols-1 space-y-3">
             <label htmlFor="handle" className="text-2xl text-slate-500">
