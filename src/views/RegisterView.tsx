@@ -5,12 +5,19 @@ export default function RegisterView() {
 
     const { register, watch, handleSubmit, formState: { errors } } = useForm();
 
+    console.log(errors);
+    
+
+    const handleRegister = () => {
+        console.log('desde handleRegister');
+    }
+
     return (
       <>
         <div className="text-4xl text-white font-bold">Crear Cuenta</div>
 
         <form
-          onSubmit={() => {}}
+          onSubmit={handleSubmit(handleRegister)}
           className="bg-white px-5 py-20 rounded-lg space-y-10 mt-10"
         >
           <div className="grid grid-cols-1 space-y-3">
@@ -22,6 +29,9 @@ export default function RegisterView() {
               type="text"
               placeholder="Tu Nombre"
               className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
+                {...register("name", { 
+                    required: 'El nombre es obligatorio'
+                })}
             />
           </div>
           <div className="grid grid-cols-1 space-y-3">
@@ -33,6 +43,9 @@ export default function RegisterView() {
               type="email"
               placeholder="Email de Registro"
               className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
+                {...register("email", { 
+                    required: 'El Email es obligatorio'
+                })}
             />
           </div>
           <div className="grid grid-cols-1 space-y-3">
@@ -44,6 +57,9 @@ export default function RegisterView() {
               type="text"
               placeholder="Nombre de usuario: sin espacios"
               className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
+                {...register("handle", { 
+                    required: 'El Handle es obligatorio'
+                })}
             />
           </div>
           <div className="grid grid-cols-1 space-y-3">
@@ -55,6 +71,9 @@ export default function RegisterView() {
               type="password"
               placeholder="Password de Registro"
               className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
+                {...register("password", { 
+                    required: 'El Password es obligatorio'
+                })}
             />
           </div>
 
@@ -66,10 +85,14 @@ export default function RegisterView() {
               Repetir Password
             </label>
             <input
-              id="password"
+              id="password_confirmation"
               type="password"
               placeholder="Repetir Password"
               className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
+                {...register("password_confirmation", { 
+                    required: 'El Password es obligatorio',
+                    // validate: (value) => value === watch('password') || 'Las contraseñas no coinciden'
+                })}
             />
           </div>
 
