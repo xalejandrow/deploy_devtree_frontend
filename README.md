@@ -21,3 +21,6 @@ NOTA: Si da un error al ejecutar hay que usar lo siguiente en vez de lo anterior
 https://react-hook-form.com/docs
 
 - npm i react-hook-form
+
+# Axios
+- npm i axios
