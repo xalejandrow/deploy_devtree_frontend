@@ -13,3 +13,6 @@ https://tailwindcss.com/
 NOTA: Si da un error al ejecutar hay que usar lo siguiente en vez de lo anterior
 - npm i -D tailwindcss@3 postcss autoprefixer
 - npx tailwindcss init -p
+
+# React Router DOM
+- npm i react-router-dom
