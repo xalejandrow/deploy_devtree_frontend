@@ -14,8 +14,7 @@ export default function RegisterView() {
 
     const { register, watch, handleSubmit, formState: { errors } } = useForm({defaultValues: initialValues});
 
-    console.log(errors);
-    
+    const password = watch('password');    
 
     const handleRegister = () => {
         console.log('desde handleRegister');
@@ -56,7 +55,15 @@ export default function RegisterView() {
               placeholder="Email de Registro"
               className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
                 {...register("email", { 
-                    required: 'El Email es obligatorio'
+                    required: 'El Email es obligatorio',
+                    pattern: {
+                        value: /\S+@\S+\.\S+/,
+                        message: "E-mail no válido",
+                    },
+                    // pattern: {
+                    //     value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                    //     message: 'El Email no es válido'
+                    // }
                 })}
                 />
 
@@ -88,7 +95,11 @@ export default function RegisterView() {
               placeholder="Password de Registro"
               className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
                 {...register("password", { 
-                    required: 'El Password es obligatorio'
+                    required: 'El Password es obligatorio',
+                    minLength: {
+                        value: 8,
+                        message: 'El Password debe tener al menos 8 caracteres'
+                    }
                 })}
             />
 
@@ -109,7 +120,7 @@ export default function RegisterView() {
               className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
                 {...register("password_confirmation", { 
                     required: 'Repetir Password es obligatorio',
-                    // validate: (value) => value === watch('password') || 'Las contraseñas no coinciden'
+                    validate: (value) => value === password || 'Los passwords no son iguales'
                 })}
             />
 
