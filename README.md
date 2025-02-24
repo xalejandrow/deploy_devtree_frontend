@@ -27,3 +27,9 @@ https://react-hook-form.com/docs
 
 # Sonner
 - npm install sonner
+
+# Heroicons
+- npm i @heroicons/react
+
+# Para la vista en moviles
+- npm i -D @tailwindcss/forms
