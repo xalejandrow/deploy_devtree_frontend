@@ -33,3 +33,9 @@ https://react-hook-form.com/docs
 
 # Para la vista en moviles
 - npm i -D @tailwindcss/forms
+
+## React Query
+https://tanstack.com/query/latest
+
+- npm i @tanstack/react-query
+- npm i @tanstack/react-query-devtools
