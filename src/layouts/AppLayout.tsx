@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { Navigate } from "react-router-dom";
-import { getUser } from "./api/DevTreeAPI";
+import { getUser } from "../api/DevTreeAPI";
 import DevTree from "../components/DevTree";
 
 export default function AppLayout() {
