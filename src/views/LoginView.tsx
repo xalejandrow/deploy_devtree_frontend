@@ -12,11 +12,7 @@ export default function LoginView() {
     password: "",
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ defaultValues: initialValues });
+  const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
 
     const handleLogin = async (formData : LoginForm) => {
         try {
