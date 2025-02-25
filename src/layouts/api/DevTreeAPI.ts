@@ -3,16 +3,11 @@ import api from "../../config/axios";
 
 export async function getUser() {
 
-        const token = localStorage.getItem('AUTH_TOKEN');
+        // const token = localStorage.getItem('AUTH_TOKEN');
 
         try {
             // const { data } = await api.get(`/user`);
-            const { data } = await api(`/user`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-                    
-            }); // This is the same as the line above
+            const { data } = await api(`/user`); // This is the same as the line above
             // console.log(data);
             return data;
         } catch (error) {
@@ -22,3 +17,4 @@ export async function getUser() {
             }
         }
 }
+
