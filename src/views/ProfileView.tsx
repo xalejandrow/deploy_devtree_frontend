@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { useQueryClient } from "@tanstack/react-query";
 import ErrorMessage from "../components/ErrorMessage";
 // import { getUser } from "../api/DevTreeAPI";
-import { User } from "../types";
+import { ProfileForm, User } from "../types";
 
 export default function ProfileView() {
 
@@ -22,12 +22,12 @@ export default function ProfileView() {
     
      
 
-    const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: {
+    const { register, handleSubmit, formState: { errors } } = useForm<ProfileForm>({ defaultValues: {
         handle: data.handle,
         description: data.description
     } });
 
-    const handleUserProfileForm = (formData) => {
+    const handleUserProfileForm = (formData : ProfileForm) => {
         console.log(formData);
     }
 
