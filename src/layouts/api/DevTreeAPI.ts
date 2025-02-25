@@ -1,14 +1,11 @@
 import { isAxiosError } from "axios";
 import api from "../../config/axios";
+import { User } from "../../types";
 
 export async function getUser() {
 
-        // const token = localStorage.getItem('AUTH_TOKEN');
-
         try {
-            // const { data } = await api.get(`/user`);
-            const { data } = await api(`/user`); // This is the same as the line above
-            // console.log(data);
+            const { data } = await api<User>(`/user`);
             return data;
         } catch (error) {
             if(isAxiosError(error) && error.response) {
