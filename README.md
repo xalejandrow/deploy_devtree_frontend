@@ -39,3 +39,9 @@ https://tanstack.com/query/latest
 
 - npm i @tanstack/react-query
 - npm i @tanstack/react-query-devtools
+
+## Cloudinary
+Para guardar los archivos de imágenes
+https://cloudinary.com/
+
+- npm i cloudinary (backend)
