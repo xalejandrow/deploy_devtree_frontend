@@ -45,3 +45,12 @@ Para guardar los archivos de imágenes
 https://cloudinary.com/
 
 - npm i cloudinary (backend)
+
+## HeadlessUI
+https://headlessui.com/
+
+- npm install @headlessui/react
+
+# Agregando Switch
+https://headlessui.com/react/switch
+
