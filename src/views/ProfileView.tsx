@@ -29,10 +29,21 @@ export default function ProfileView() {
     const uploadImageMutation = useMutation({
         mutationFn: uploadImage,
         onError: (error) => {
-            console.log(error); 
+           toast.error(error.message);
         },
         onSuccess: (data) => {
-            console.log(data);
+            // Mostrando imegen del Perfil
+            
+            // Opción 1: Muestra la imagen luego de que se graba y lee el user del caché
+            // queryClient.invalidateQueries({queryKey:['user']}); 
+            
+            // Opción 2: Optimistic Updates - Muestra la imagen antes de que se graba y graba el user del caché
+            queryClient.setQueryData(['user'], (prevData : User) => {
+                return {
+                    ...prevData,
+                    image: data
+                }
+             })
         }
     })
 
@@ -40,7 +51,6 @@ export default function ProfileView() {
         if(e.target.files) {
             // console.log(e.target.files[0]);
             uploadImageMutation.mutate(e.target.files[0]);
-            queryClient.invalidateQueries({queryKey:['user']});
         }
     }
         
