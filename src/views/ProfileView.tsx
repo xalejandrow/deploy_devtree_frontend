@@ -40,7 +40,7 @@ export default function ProfileView() {
         if(e.target.files) {
             // console.log(e.target.files[0]);
             uploadImageMutation.mutate(e.target.files[0]);
-
+            queryClient.invalidateQueries({queryKey:['user']});
         }
     }
         
