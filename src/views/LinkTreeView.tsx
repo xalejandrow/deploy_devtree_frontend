@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { social } from "../data/social";
 import DevTreeInput from "../components/DevTreeInput";
@@ -11,7 +11,7 @@ export default function LinkTreeView() {
   const [devTreeLinks, setDevTreeLinks] = useState(social);
 
   const queryClient = useQueryClient();
-  const user: User = queryClient.getQueryData(['user'])!;
+  const user: User = queryClient.getQueryData(['user'])!;  
 
   const { mutate } = useMutation({
     mutationFn: updateProfile,
@@ -23,6 +23,20 @@ export default function LinkTreeView() {
     },
   });
 
+  useEffect(() => {
+    const updatedData = devTreeLinks.map(item => {
+        const userLinks = JSON.parse(user.links).find(link => link.name === item.name);
+        if (userLinks) {
+          return { ...item, url: userLinks.url, enabled: userLinks.enabled };
+        }
+        return item;
+    });
+    setDevTreeLinks(updatedData);
+    // console.log(devTreeLinks);
+    // console.log(JSON.parse(user.links));
+
+  }, []);
+
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(e.target.value);
     // console.log(e.target.name);
@@ -31,6 +45,13 @@ export default function LinkTreeView() {
     );
     // console.log(updatedLinks);
     setDevTreeLinks(updatedLinks);
+    queryClient.setQueryData(['user'], (prevData: User) => {
+            return {
+                ...prevData,
+                links: JSON.stringify(updatedLinks)
+            };
+        }
+    );
   };
 
   const handleEnableLink = (socialNetwork: string) => {
@@ -48,11 +69,11 @@ export default function LinkTreeView() {
     setDevTreeLinks(updatedLinks);
 
     queryClient.setQueryData(['user'], (prevData: User) => {
-      return {
-        ...prevData,
-        links: JSON.stringify(updatedLinks)
-      };
-    }
+            return {
+                ...prevData,
+                links: JSON.stringify(updatedLinks)
+            };
+        }
     );
   };
 
