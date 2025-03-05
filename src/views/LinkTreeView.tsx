@@ -44,15 +44,18 @@ export default function LinkTreeView() {
       link.name === e.target.name ? { ...link, url: e.target.value } : link
     );
     // console.log(updatedLinks);
+
     setDevTreeLinks(updatedLinks);
-    queryClient.setQueryData(['user'], (prevData: User) => {
-            return {
-                ...prevData,
-                links: JSON.stringify(updatedLinks)
-            };
-        }
-    );
+    // queryClient.setQueryData(['user'], (prevData: User) => {
+    //         return {
+    //             ...prevData,
+    //             links: JSON.stringify(updatedLinks)
+    //         };
+    //     }
+    // );
   };
+
+  const links: SocialNetwork[] = JSON.parse(user.links);
 
   const handleEnableLink = (socialNetwork: string) => {
     const updatedLinks = devTreeLinks.map((link) => {
@@ -69,21 +72,30 @@ export default function LinkTreeView() {
     setDevTreeLinks(updatedLinks);
 
     // console.log(socialNetwork);
+    let updatedItems: SocialNetwork[] = [];
 
     const selectedSocialNetwork = updatedLinks.find((link) => link.name === socialNetwork);
     if(selectedSocialNetwork?.enabled){
-      console.log('Habilitando: ', selectedSocialNetwork);
+      // console.log('Habilitando: ', selectedSocialNetwork);
+      // console.log(links.length);
+      const newItem = {
+        ...selectedSocialNetwork,
+        id: links.length + 1
+      }
+      // console.log(newItem);
+      updatedItems = [...links, newItem];
       
     }else{
       console.log('Deshabilitando: ', selectedSocialNetwork);
     }
-    
 
+    console.log(updatedItems);
+    
     // Almacenar en la base de datos
     queryClient.setQueryData(['user'], (prevData: User) => {
             return {
                 ...prevData,
-                links: JSON.stringify(updatedLinks)
+                links: JSON.stringify(updatedItems)
             };
         }
     );
