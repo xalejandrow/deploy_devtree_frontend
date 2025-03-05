@@ -64,11 +64,27 @@ export default function LinkTreeView() {
 
     const selectedSocialNetwork = updatedLinks.find((link) => link.name === socialNetwork);
     if(selectedSocialNetwork?.enabled){
-      const newItem = {
-        ...selectedSocialNetwork,
-        id: links.length + 1
-      }
-      updatedItems = [...links, newItem];
+        const id = links.filter(link => link.id).length + 1;
+        if(links.some(link => link.name === socialNetwork)) {
+            // console.log('YA EXISTE');
+            updatedItems = links.map((link) => {
+                if(link.name === socialNetwork){
+                    return {
+                        ...link,
+                        enabled: true,
+                        id
+                    }
+                } else {
+                    return link;
+                }
+            });
+        } else {
+            const newItem = {
+              ...selectedSocialNetwork,
+              id
+            }
+            updatedItems = [...links, newItem];
+        }
       
     }else{
       const indexToUpdate = links.findIndex((link) => link.name === socialNetwork);
@@ -88,11 +104,11 @@ export default function LinkTreeView() {
           return link;
         }
       });
-      console.log(indexToUpdate);
+    //   console.log(indexToUpdate);
       
     }
 
-    console.log(updatedItems);
+    // console.log(updatedItems);
     
     // Almacenar en la base de datos
     queryClient.setQueryData(['user'], (prevData: User) => {
