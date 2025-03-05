@@ -68,6 +68,18 @@ export default function LinkTreeView() {
     // console.log(updatedLinks);
     setDevTreeLinks(updatedLinks);
 
+    // console.log(socialNetwork);
+
+    const selectedSocialNetwork = updatedLinks.find((link) => link.name === socialNetwork);
+    if(selectedSocialNetwork?.enabled){
+      console.log('Habilitando: ', selectedSocialNetwork);
+      
+    }else{
+      console.log('Deshabilitando: ', selectedSocialNetwork);
+    }
+    
+
+    // Almacenar en la base de datos
     queryClient.setQueryData(['user'], (prevData: User) => {
             return {
                 ...prevData,
