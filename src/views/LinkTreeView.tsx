@@ -38,21 +38,11 @@ export default function LinkTreeView() {
   }, []);
 
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(e.target.value);
-    // console.log(e.target.name);
     const updatedLinks = devTreeLinks.map((link) =>
       link.name === e.target.name ? { ...link, url: e.target.value } : link
     );
-    // console.log(updatedLinks);
-
+    
     setDevTreeLinks(updatedLinks);
-    // queryClient.setQueryData(['user'], (prevData: User) => {
-    //         return {
-    //             ...prevData,
-    //             links: JSON.stringify(updatedLinks)
-    //         };
-    //     }
-    // );
   };
 
   const links: SocialNetwork[] = JSON.parse(user.links);
@@ -68,25 +58,20 @@ export default function LinkTreeView() {
       }
       return link;
     });
-    // console.log(updatedLinks);
     setDevTreeLinks(updatedLinks);
 
-    // console.log(socialNetwork);
     let updatedItems: SocialNetwork[] = [];
 
     const selectedSocialNetwork = updatedLinks.find((link) => link.name === socialNetwork);
     if(selectedSocialNetwork?.enabled){
-      // console.log('Habilitando: ', selectedSocialNetwork);
-      // console.log(links.length);
       const newItem = {
         ...selectedSocialNetwork,
         id: links.length + 1
       }
-      // console.log(newItem);
       updatedItems = [...links, newItem];
       
     }else{
-      console.log('Deshabilitando: ', selectedSocialNetwork);
+      updatedItems = links.filter((link) => link.name !== socialNetwork);
     }
 
     console.log(updatedItems);
