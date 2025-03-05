@@ -3,6 +3,7 @@ import { Toaster } from "sonner";
 import NavigationTabs from "./NavigationTabs";
 import { SocialNetwork, User } from "../types";
 import { useState } from "react";
+import DevTreeLink from "./DevTreeLink";
 
 type DevTreeProps = {
     data: User
@@ -59,7 +60,7 @@ export default function DevTree({ data } : DevTreeProps) {
 
                             <div className="mt-20 flex flex-col gap-5">
                                 {enableLinks.map((link) => (
-                                    <p>{link.url}</p>
+                                    <DevTreeLink key={link.name} link={link}/>
                                 ))}
                             </div>
                         </div>
