@@ -54,3 +54,10 @@ https://headlessui.com/
 # Agregando Switch
 https://headlessui.com/react/switch
 
+# Drag and Drop
+https://dndkit.com/
+
+- npm install @dnd-kit/core
+- npm install @dnd-kit/sortable
+
+- npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
