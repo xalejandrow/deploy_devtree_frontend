@@ -6,7 +6,7 @@ import Logo from "./Logo";
 export default function Header() {
 
     const location = useLocation();
-    console.log(location);
+    // console.log(location);
     
     return (
         <header className="bg-slate-800 py-5">
