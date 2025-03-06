@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query";
 import { getUserByHandle } from "../api/DevTreeAPI";
 
@@ -12,9 +12,13 @@ export default function HandleView() {
     retry: 1
   })
 
-  console.log(isLoading);
-  console.log(error);
-  console.log(data);
+  if(isLoading) return <p className="text-center text-white">Cargando...</p>
+  if(error) return <Navigate to="/404" />
+
+
+  // console.log(isLoading);
+  // console.log(error);
+  // console.log(data);
   
 
   return (
