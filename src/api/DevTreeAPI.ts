@@ -1,6 +1,6 @@
 import { isAxiosError } from "axios";
 import api from "../config/axios";
-import { ProfileForm, User } from "../types";
+import { User, UserHandle } from "../types";
 
 export async function getUser() {
 
@@ -46,7 +46,7 @@ export async function getUserByHandle(handle: string) {
 
     try {
         const url = `/${handle}`;
-        const { data } = await api(url);
+        const { data } = await api<UserHandle>(url);
         return data;
     } catch (error) {
         if(isAxiosError(error) && error.response) {
