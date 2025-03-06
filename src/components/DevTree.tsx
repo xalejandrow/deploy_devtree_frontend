@@ -22,8 +22,17 @@ export default function DevTree({ data } : DevTreeProps) {
     }, [data]);
 
 
-    const handleDragEnd = () => {
+    const handleDragEnd = (e: DragDndEvent) => {
+        const { active, over } = e;
         
+        if(over && over.id) {
+            const prevIndex = enabledLinks.findIndex((link) => link.id === active.id);
+            const newIndex = enabledLinks.findIndex((link) => link.id === over.id);
+            const order = arrayMove(enabledLinks, prevIndex, newIndex);
+
+            setEnabledLinks(order);
+            
+        }
     }
     
   return (
