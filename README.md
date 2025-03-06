@@ -61,3 +61,6 @@ https://dndkit.com/
 - npm install @dnd-kit/sortable
 
 - npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
+
+# Generando Slug 
+- npm i react-slugify
