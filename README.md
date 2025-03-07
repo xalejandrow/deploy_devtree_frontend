@@ -64,3 +64,7 @@ https://dndkit.com/
 
 # Generando Slug 
 - npm i react-slugify
+
+### Deployment Frontend
+https://www.netlify.com/
+
