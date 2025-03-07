@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { Toaster } from "sonner";
-import { DndContext, DragDndEvent, closestCenter } from "@dnd-kit/core";
+import { DndContext, DragEndEvent, closestCenter } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import NavigationTabs from "./NavigationTabs";
 import { SocialNetwork, User } from "../types";
@@ -25,7 +25,7 @@ export default function DevTree({ data } : DevTreeProps) {
 
     const queryClient = useQueryClient();
 
-    const handleDragEnd = (e: DragDndEvent) => {
+    const handleDragEnd = (e: DragEndEvent) => {
         const { active, over } = e;
         
         if(over && over.id) {
